@@ -6,11 +6,11 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
-@WebServlet("/api/guests")
-public class GuestController extends JsonServlet {
+@WebServlet("/api/offers")
+public class OfferController extends JsonServlet {
     private final WalletService service = new WalletService();
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        json(resp, service.listGuests());
+        json(resp, service.listOffers());
     }
 }
