@@ -4,6 +4,7 @@ import org.example.dto.*;
 import org.example.entity.*;
 import org.example.enums.BenefitStatus;
 import org.example.repository.*;
+import org.example.util.QRCodeGenerator;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -12,6 +13,7 @@ public class WalletService {
     private final OfferRepository offers = new OfferRepository();
     private final GuestRepository guests = new GuestRepository();
     private final WalletBenefitRepository benefits = new WalletBenefitRepository();
+    private final QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
 
     public List<Offer> listOffers() {
         return offers.findAll();
@@ -29,7 +31,7 @@ public class WalletService {
     }
 
     public WalletItemDto validate(String qrCode) {
-        WalletBenefit b = benefits.findByQrCode(qrCode).orElseThrow(() -> new IllegalArgumentException("Invalid QR token"));
+        WalletBenefit b = benefits.findByQrToken(qrCode).orElseThrow(() -> new IllegalArgumentException("Invalid QR token"));
         return new WalletItemDto(b, offers.findById(b.getOfferId()).orElseThrow());
     }
 
@@ -45,13 +47,14 @@ public class WalletService {
         offers.save(offer);
         long id = benefits.nextId();
         String token = "JGW-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        WalletBenefit b = new WalletBenefit(id, guestId, offerId, BenefitStatus.RESERVED, token, LocalDateTime.now());
+        String qrImage = qrCodeGenerator.generateQRCode(token);
+        WalletBenefit b = new WalletBenefit(id, guestId, offerId, BenefitStatus.RESERVED, token, qrImage, LocalDateTime.now());
         benefits.save(b);
         return new WalletItemDto(b, offer);
     }
 
     public WalletItemDto redeem(String qrCode) {
-        WalletBenefit b = benefits.findByQrCode(qrCode).orElseThrow(() -> new IllegalArgumentException("Invalid QR token"));
+        WalletBenefit b = benefits.findByQrToken(qrCode).orElseThrow(() -> new IllegalArgumentException("Invalid QR token"));
         if (b.getStatus() == BenefitStatus.REDEEMED) throw new IllegalStateException("Benefit already redeemed");
         b.setStatus(BenefitStatus.REDEEMED);
         b.setRedeemedAt(LocalDateTime.now());

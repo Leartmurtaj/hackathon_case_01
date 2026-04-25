@@ -9,6 +9,7 @@ public class WalletBenefit {
     private long guestId;
     private long offerId;
     private BenefitStatus status;
+    private String qrToken;
     private String qrCode;
     private LocalDateTime bookedAt;
     private LocalDateTime redeemedAt;
@@ -16,11 +17,12 @@ public class WalletBenefit {
     public WalletBenefit() {
     }
 
-    public WalletBenefit(long id, long guestId, long offerId, BenefitStatus status, String qrCode, LocalDateTime bookedAt) {
+    public WalletBenefit(long id, long guestId, long offerId, BenefitStatus status, String qrToken, String qrCode, LocalDateTime bookedAt) {
         this.id = id;
         this.guestId = guestId;
         this.offerId = offerId;
         this.status = status;
+        this.qrToken = qrToken;
         this.qrCode = qrCode;
         this.bookedAt = bookedAt;
     }
@@ -63,6 +65,14 @@ public class WalletBenefit {
 
     public void setQrCode(String qrCode) {
         this.qrCode = qrCode;
+    }
+
+    public String getQrToken() {
+        return qrToken;
+    }
+
+    public void setQrToken(String qrToken) {
+        this.qrToken = qrToken;
     }
 
     public LocalDateTime getBookedAt() {
