@@ -109,6 +109,16 @@ export default {
                         '</p></article>';
 
             renderOffers(items);
+
+            //copy button click event logic
+            layout.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    await navigator.clipboard.writeText(btn.dataset.code);
+                    const originalSvg = btn.innerHTML;
+                    btn.innerHTML = '<span>Saved!</span>'; // Visual feedback
+                    setTimeout(() => btn.innerHTML = originalSvg, 1500);
+                });
+            });
         }
 
         guests = await service.guests();
