@@ -2,7 +2,7 @@ import util from '../util.js';
 import service from '../service.js';
 
 export default {
-    title: 'Guest Wallet', async render() {
+    title: 'Marketplace', async render() {
         const layout = await util.loadTemplate('layout.html');
         const page = layout.querySelector('#page');
         page.replaceChildren(await util.loadTemplate('wallet.html'));
@@ -10,17 +10,16 @@ export default {
 
         const guestSel = layout.querySelector('#guest');
         const offersEl = layout.querySelector('#offers');
-        const walletEl = layout.querySelector('#wallet');
         const alerts = layout.querySelector('#alerts');
         const guestName = layout.querySelector('#guestName');
         const guestCard = layout.querySelector('#guestCard');
         const benefitCount = layout.querySelector('#benefitCount');
+        const walletEl = layout.querySelector('#wallet');
 
         let guests = [];
         let offers = [];
 
         const money = value => `CHF ${Number(value).toFixed(2)}`;
-        const badge = status => `<span class="badge ${status}">${status}</span>`;
         const alert = (type, message) => {
             alerts.innerHTML = `<div class="alert alert-${type} mb-3">${message}</div>`;
             setTimeout(() => {
@@ -40,7 +39,7 @@ export default {
             layout.querySelectorAll('.book').forEach(button => button.addEventListener('click', async () => {
                 try {
                     await service.book(Number(guestSel.value), Number(button.dataset.id));
-                    alert('success', 'Benefit reserved and QR token generated.');
+                    alert('success', 'Benefit reserved. You can now view it on the Reserved Benefits page.');
                     offers = await service.offers();
                     await loadWallet();
                 } catch (e) {
@@ -56,9 +55,44 @@ export default {
 
             const items = await service.wallet(guestSel.value);
             benefitCount.textContent = items.length;
+            const badge = status => `<span class="badge ${status}">${status}</span>`;
             walletEl.innerHTML = items.length
-                ? items.map(item => `<article class="card"><div class="d-flex justify-content-between gap-2 align-items-start">${badge(item.benefit.status)}<span class="meta">${item.offer.category}</span></div><h2 class="mt-3">${item.offer.title}</h2><p class="meta">${item.offer.partner}</p><p>${item.offer.description}</p><p><strong>${Math.round((1 - item.offer.discountedPrice / item.offer.price) * 100) || 100}% benefit</strong> | ${money(item.offer.discountedPrice)} <span class="meta text-decoration-line-through">${money(item.offer.price)}</span></p><div class="qr">${item.benefit.qrCode}</div><p class="meta mb-0">Show this QR token to the partner for one-time redemption.</p></article>`).join('')
-                : '<article class="card"><h2>No wallet passes yet</h2><p class="meta mb-0">Book an eligible marketplace offer to create a reserved QR pass.</p></article>';
+                ? items.map(item => `
+                    <article class="card">
+                        <div class="d-flex justify-content-between gap-2 align-items-start">
+                            ${badge(item.benefit.status)}
+                            <span class="meta">${item.offer.category}</span>
+                        </div>
+
+                        <h2 class="mt-3">${item.offer.title}</h2>
+                        <p class="meta">${item.offer.partner}</p>
+                        <p>${item.offer.description}</p>
+
+                        <p>
+                            <strong>
+                                ${Math.round((1 - item.offer.discountedPrice / item.offer.price) * 100) || 100}% benefit
+                            </strong>
+                            |
+                            ${money(item.offer.discountedPrice)}
+                            <span class="meta text-decoration-line-through">
+                                ${money(item.offer.price)}
+                            </span>
+                        </p>
+
+                        <div class="qr">${item.benefit.qrCode}</div>
+
+                        <p class="meta mb-0">
+                            Show this QR token to the partner for one-time redemption.
+                        </p>
+
+                    </article>`
+                        )
+                        .join('')
+                    : '<article class="card">' +
+                        '<h2>No wallet passes yet</h2>' +
+                        '<p class="meta mb-0">' +
+                            'Book an eligible marketplace offer to create a reserved QR pass.' +
+                        '</p></article>';
 
             renderOffers(items);
         }
