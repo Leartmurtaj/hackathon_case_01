@@ -14,6 +14,7 @@ export default {
         const guestName = layout.querySelector('#guestName');
         const guestCard = layout.querySelector('#guestCard');
         const benefitCount = layout.querySelector('#benefitCount');
+        const walletEl = layout.querySelector('#wallet');
 
         let guests = [];
         let offers = [];
@@ -54,6 +55,7 @@ export default {
 
             const items = await service.wallet(guestSel.value);
             benefitCount.textContent = items.length;
+            const badge = status => `<span class="badge ${status}">${status}</span>`;
             walletEl.innerHTML = items.length
                 ? items.map(item => `
                     <article class="card">
