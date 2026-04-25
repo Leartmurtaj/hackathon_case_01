@@ -8,13 +8,12 @@ public class Offer {
     private String description;
     private double price;
     private double discountedPrice;
-    private boolean oneTime;
     private int stock;
 
     public Offer() {
     }
 
-    public Offer(long id, String title, String category, String partner, String description, double price, double discountedPrice, boolean oneTime, int stock) {
+    public Offer(long id, String title, String category, String partner, String description, double price, double discountedPrice, int stock) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -22,7 +21,6 @@ public class Offer {
         this.description = description;
         this.price = price;
         this.discountedPrice = discountedPrice;
-        this.oneTime = oneTime;
         this.stock = stock;
     }
 
@@ -80,14 +78,6 @@ public class Offer {
 
     public void setDiscountedPrice(double discountedPrice) {
         this.discountedPrice = discountedPrice;
-    }
-
-    public boolean isOneTime() {
-        return oneTime;
-    }
-
-    public void setOneTime(boolean oneTime) {
-        this.oneTime = oneTime;
     }
 
     public int getStock() {
