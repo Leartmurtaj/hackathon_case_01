@@ -26,8 +26,40 @@ export default {
             metrics.innerHTML = `<p><strong>${d.bookings}</strong> bookings</p><p><strong>${d.openRedemptions}</strong> open redemptions</p><p><strong>${d.redeemed}</strong> redeemed</p><p><strong>CHF ${d.partnerSavings.toFixed(2)}</strong> modeled value</p>`;
         }
 
+        function attachResultActions() {
+            result.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    await navigator.clipboard.writeText(btn.dataset.code);
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<span>Saved!</span>';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 1500);
+                });
+            });
+        }
+
         function renderItem(i, action) {
-            result.innerHTML = `<article class="card mt-3">${badge(i.benefit.status)}<h2 class="mt-3">${i.offer.title}</h2><p>Partner: <strong>${i.offer.partner}</strong></p><p>Token: <strong>${i.benefit.qrCode}</strong></p><p class="meta mb-0">${action}</p></article>`;
+            result.innerHTML = `<article class="card mt-3">
+                ${badge(i.benefit.status)}
+                <h2 class="mt-3">${i.offer.title}</h2>
+                <p>Partner: <strong>${i.offer.partner}</strong></p>
+                <div class="qr-container">
+                    <div class="qr-image-box">
+                        <img src="${i.benefit.qrCode}" width="220" height="220" alt="Validated QR code">
+                    </div>
+                    <div class="qr-token-box">
+                        <strong>${i.benefit.qrToken}</strong>
+                        <button class="icon-btn copy-btn" title="Copy code" data-code="${i.benefit.qrToken}">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <p class="meta mb-0">${action}</p>
+            </article>`;
+            attachResultActions();
         }
 
         // 4. Attach listeners to the found elements
