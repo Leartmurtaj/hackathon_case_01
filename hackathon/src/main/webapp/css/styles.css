@@ -246,13 +246,34 @@ a {
 }
 
 .qr-container {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 18px 0;
+}
+
+.qr-image-box {
+    width: fit-content;
+    background: white;
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.qr-token-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    background: #eef6f3;
+    border: 1px dashed var(--brand);
+    border-radius: 12px;
+    padding: 12px 14px;
 }
 
 .copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: static;
+    opacity: 1;
+    transform: none;
 }
 
 .paste-btn {
