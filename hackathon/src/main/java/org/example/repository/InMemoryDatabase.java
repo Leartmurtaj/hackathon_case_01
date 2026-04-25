@@ -18,6 +18,8 @@ public final class InMemoryDatabase {
         OFFERS.put(2L,new Offer(2,"Jungfrau Railway Upgrade","Railway","Jungfraubahnen","Wallet-based benefit validation before checkout.",95,79,12));
         OFFERS.put(3L,new Offer(3,"Local Museum Pass","Culture","Interlaken Museum","Multi-use benefit for overnight guests.",18,0,100));
         OFFERS.put(4L,new Offer(4,"Sustainable Mobility Token","Reward","Destination Office","Earn or spend a token for low-impact travel behaviour.",10,0,50));
+        OFFERS.put(5L,new Offer(5,"Tandem Paragliding on Harder Kulm","Activity","Paragliding School Interlaken","One-time discounted mountain activity with guest-card entitlement.",99,59,25));
+        OFFERS.put(6L,new Offer(6,"Etherlaken Innovation Park","Activity","START GLOBAL","One-time discounted discovery activity with guest-card entitlement.",18,10,300));
     }
 
     private InMemoryDatabase(){}
