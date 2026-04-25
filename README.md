@@ -1,74 +1,79 @@
-# Hackathon-01
-
-
-# Jungfrau Digital Guest Wallet
+# Jungfrau Wallet – Digital Guest Benefit System
 
 ## Overview
-This project is a prototype of a **Digital Guest Wallet System** for the Jungfrau Region.  
-It enables guests to **access, manage, and redeem benefits digitally** while providing partners with a **simple and low-friction validation process**.
+
+This project is a prototype of a **digital guest wallet** for the Jungfrau Region.  
+It allows guests to **book, store, and redeem local benefits** using a simple QR-based system.
+
+The goal is to reduce friction in booking and redemption while providing a scalable digital layer for tourism partners.
 
 ---
 
-## Problem
-Current guest card systems offer attractive benefits but:
-- Are not easily redeemable online  
-- Require manual validation  
-- Create friction for international guests  
-- Lead to high operational overhead for local providers  
+## Key Features
 
----
+### Guest Wallet
+- Browse bookable marketplace offers
+- Reserve benefits with one click
+- Automatically generate a **QR code + token**
+- View all reserved benefits in one place
 
-## Solution
-We provide a **unified digital wallet** that allows:
-- Guests to view and redeem benefits in one place  
-- Seamless QR-based redemption  
-- Partners to validate benefits quickly  
-- A scalable system for future integrations  
+### Reserved Benefits (Start Page)
+- Overview of all booked benefits
+- Each benefit includes:
+  - QR code for redemption
+  - Copyable token (backup validation)
+- Clean, mobile-friendly card UI
 
----
-
-## Core Features (MVP)
-- 🪪 Digital Guest Card (Wallet View)
-- 🎟️ Offer Catalogue (discounts & activities)
-- 📲 Benefit Reservation & QR Code generation
-- ✅ One-time Redemption via Partner Interface
-- 🔁 Status Tracking (Available → Reserved → Redeemed)
-
----
-
-## Users
-- **Primary**: Tourists (Swiss & international)
-- **Secondary**: Local tourism providers (hotels, activities, railways)
+### Partner View
+- Validate QR tokens manually
+- Simulates real-world redemption flow
+- One-time usage logic (ready to extend)
 
 ---
 
 ## Tech Stack
-- **Backend**: Java, Spring Boot  
-- **Frontend**: HTML + CSS  
-- **Database**: H2 (in-memory for demo)  
-- **QR Codes**: Token-based simulation  
+
+### Backend
+- Java (Servlet-based)
+- Maven (WAR packaging)
+- In-memory database (for demo)
+- ZXing (QR Code generation)
+
+### Frontend
+- Vanilla JavaScript (SPA-style routing)
+- HTML templates
+- CSS (custom styling)
 
 ---
 
-## User Flow
+## QR Code Logic
 
-### Guest Journey
-1. Access digital wallet  
-2. View available offers  
-3. Select and reserve a benefit  
-4. Receive QR code  
-5. Present QR code to partner  
+Each reservation generates:
 
-### Partner Journey
-1. Enter or scan QR code  
-2. Validate benefit  
-3. Confirm redemption  
+- `qrToken` → human-readable code (e.g. `JGW-D79435FC`)
+- `qrCode` → Base64 PNG image for display
 
 ---
 
-## Schedule
+## Known Limitations
 
-| Topic | Due | 
-|-------|-----|
-| Draft Submission |  25.04.2026; 15:00 | 
-| Final Submission | 26.04.2026; 8:00 | 
+- No real payment integration (simulated)
+- No persistent database (in-memory only)
+- QR validation is manual
+- No authentication system
+
+---
+
+## Future Improvements
+
+- Payment integration (Stripe / Twint)
+- QR scanning via camera
+- Expiration & validation logic
+- Partner dashboard
+- Real database (PostgreSQL)
+
+---
+
+## Authors
+
+Hackathon Team: Leart Murtaj, Yanis Länzlinger, Semelet Arnaud
