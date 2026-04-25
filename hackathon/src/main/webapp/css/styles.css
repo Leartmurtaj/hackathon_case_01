@@ -282,3 +282,49 @@ a {
     top: 50%;
     transform: translateY(-50%) scale(0.9);
 }
+
+/* sort offers by ... menu */
+.sort-toolbar {
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+    padding: 8px 16px;
+    border-radius: 16px; /* Soft edges */
+    border: 1px solid var(--line);
+}
+
+.custom-select {
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    color: var(--brand2);
+    cursor: pointer;
+    outline: none;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.custom-select:hover {
+    background: rgba(15, 118, 110, 0.05); /* Very light brand tint */
+}
+
+.btn-sort {
+    background: var(--brand);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.btn-sort:hover {
+    background: var(--brand2);
+    transform: translateY(-1px);
+}

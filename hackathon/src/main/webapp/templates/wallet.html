@@ -16,8 +16,27 @@
 
 <div class="grid" id="wallet"></div>
 
+<!-- sort offers by ... menu -->
 <section class="card timeline mt-4">
-    <h2>Bookable Marketplace Offers</h2>
-    <p class="meta">Add eligible offers to the guest wallet. Booking creates a reserved wallet pass and QR token.</p>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <div>
+            <h2 class="mb-1">Bookable Marketplace Offers</h2>
+            <p class="meta mb-0">Add eligible offers to the guest wallet.</p>
+        </div>
+
+        <div class="sort-toolbar">
+            <span class="meta me-2">Sort by:</span>
+            <select id="sortCriteria" class="form-select-sm custom-select">
+                <option value="popularity">Most Popular</option>
+                <option value="price">Price</option>
+                <option value="spots">Available Spots</option>
+                <option value="type">Activity Type</option>
+            </select>
+            <button id="sortOrder" class="btn-sort" title="Toggle Order">
+                <span id="sortDirIcon">↓</span>
+            </button>
+        </div>
+    </div>
+
     <div id="offers" class="grid"></div>
 </section>
