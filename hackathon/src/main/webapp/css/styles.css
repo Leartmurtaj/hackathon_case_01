@@ -1,1 +1,187 @@
--- TODO --
+:root {
+    --bg: #f6f8fb;
+    --card: #fff;
+    --text: #1d2733;
+    --muted: #64748b;
+    --brand: #0f766e;
+    --brand2: #134e4a;
+    --line: #e2e8f0
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+.container {
+    max-width: 1080px
+}
+
+.app-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--brand2)
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap
+}
+
+.nav-link {
+    border-radius: 12px;
+    padding: 11px 15px;
+    background: #e2e8f0;
+    color: #0f172a;
+    font-weight: 700
+}
+
+.nav-link.active {
+    background: var(--brand);
+    color: white
+}
+
+.btn, button {
+    border-radius: 12px;
+    padding: 11px 15px;
+    font-weight: 700
+}
+
+.btn-primary, button.btn-primary {
+    background: var(--brand);
+    border-color: var(--brand)
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    border-color: #e2e8f0;
+    color: #0f172a
+}
+
+.hero {
+    background: linear-gradient(135deg, #0f766e, #164e63);
+    color: white;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 12px 30px rgba(15, 118, 110, .20)
+}
+
+.hero h1 {
+    margin: 0 0 8px;
+    font-size: 34px
+}
+
+.hero p {
+    opacity: .92
+}
+
+.wallet-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .06)
+}
+
+.card h2, .card h3 {
+    margin-top: 0
+}
+
+.meta {
+    color: var(--muted);
+    font-size: 14px
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 800
+}
+
+.badge.AVAILABLE {
+    background: #dcfce7;
+    color: #166534
+}
+
+.badge.RESERVED {
+    background: #fef3c7;
+    color: #92400e
+}
+
+.badge.REDEEMED {
+    background: #fee2e2;
+    color: #991b1b
+}
+
+.qr {
+    font-family: monospace;
+    background: #eef6f3;
+    border: 1px dashed var(--brand);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px 0;
+    word-break: break-all
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center
+}
+
+.form-row input {
+    flex: 1;
+    min-width: 260px
+}
+
+.alert {
+    border-radius: 14px;
+    font-weight: 700
+}
+
+.timeline ol {
+    margin-bottom: 0
+}
+
+.footer {
+    margin-top: 30px;
+    color: var(--muted);
+    font-size: 14px
+}
