@@ -20,11 +20,11 @@ export default {
         let offers = [];
 
         const money = value => `CHF ${Number(value).toFixed(2)}`;
-        const alert = (type, message) => {
+        const alert = (type, message, duration = 2600) => {
             alerts.innerHTML = `<div class="alert alert-${type} mb-3">${message}</div>`;
             setTimeout(() => {
                 alerts.innerHTML = '';
-            }, 2600);
+            }, duration);
         };
 
         function renderOffers(items) {
@@ -39,7 +39,7 @@ export default {
             layout.querySelectorAll('.book').forEach(button => button.addEventListener('click', async () => {
                 try {
                     await service.book(Number(guestSel.value), Number(button.dataset.id));
-                    alert('success', 'Benefit reserved. You can now view it on the Reserved Benefits page.');
+                    alert('success', 'Benefit reserved. You can now view it on the Reserved Benefits page.', 10000);
                     offers = await service.offers();
                     await loadWallet();
                 } catch (e) {
