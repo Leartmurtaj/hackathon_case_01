@@ -13,9 +13,7 @@ public final class InMemoryDatabase {
     public static final AtomicLong BENEFIT_ID = new AtomicLong(100);
 
     static {
-        GUESTS.put(1L,new Guest(1,"Mia Keller","Switzerland",3,2));
-        GUESTS.put(2L,new Guest(2,"Alex Morgan","United Kingdom",5,1));
-        GUESTS.put(3L,new Guest(3,"Sofia Rossi","Italy",0,0));
+        GUESTS.put(1L,new Guest(1,"Demo Guest","Switzerland",3,2));
         OFFERS.put(1L,new Offer(1,"First Cliff Walk","Activity","Grindelwald First","One-time discounted mountain activity with guest-card entitlement.",64,49,true,20));
         OFFERS.put(2L,new Offer(2,"Jungfrau Railway Upgrade","Railway","Jungfraubahnen","Wallet-based benefit validation before checkout.",95,79,true,12));
         OFFERS.put(3L,new Offer(3,"Local Museum Pass","Culture","Interlaken Museum","Multi-use benefit for overnight guests.",18,0,false,100));

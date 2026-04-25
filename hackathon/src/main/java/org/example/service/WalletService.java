@@ -38,6 +38,9 @@ public class WalletService {
         Offer offer = offers.findById(offerId).orElseThrow();
         if (guest.getNights() < 1) throw new IllegalStateException("Guest is not eligible");
         if (offer.getStock() < 1) throw new IllegalStateException("Offer is sold out");
+        boolean alreadyBooked = benefits.findByGuestId(guestId).stream()
+                .anyMatch(b -> b.getOfferId() == offerId);
+        if (alreadyBooked) throw new IllegalStateException("This offer can only be reserved once per guest");
         offer.setStock(offer.getStock() - 1);
         offers.save(offer);
         long id = benefits.nextId();
