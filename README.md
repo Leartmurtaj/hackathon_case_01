@@ -76,4 +76,4 @@ Each reservation generates:
 
 ## Authors
 
-Hackathon Team: Leart Murtaj, Yanis Länzlinger, Semelet Arnaud
+Hackathon Team Code404: Murtaj Leart, Länzlinger Yanis, Semelet Arnaud
